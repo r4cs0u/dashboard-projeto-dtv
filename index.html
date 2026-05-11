@@ -2,413 +2,370 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Punchlist DTV+ - Exibicao & Distribuicao</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
---blue:#2196F3;--orange:#FF9800;--green:#4CAF50;--purple:#9C27B0;--red:#e74c3c;
---dark:#1B2A4A;--darker:#141f36;--light:#f5f6fa;--white:#fff;--gray:#6c7a8d;
---border:#e0e4ea;--shadow:0 2px 8px rgba(0,0,0,.08);
---prog-red:#e74c3c;--prog-yellow:#f39c12;--prog-green:#27ae60;
-}
+:root{--blue:#2196F3;--orange:#FF9800;--green:#4CAF50;--purple:#9C27B0;--red:#e74c3c;
+--dark:#1B2A4A;--light:#f5f6fa;--white:#fff;--gray:#6c7a8d;--border:#e0e4ea;
+--shadow:0 2px 8px rgba(0,0,0,.07);--pr:#e74c3c;--py:#f39c12;--pg:#27ae60}
 body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--light);color:#2c3e50;font-size:14px;line-height:1.5}
-header{background:var(--dark);color:var(--white);padding:18px 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2)}
-header h1{font-size:20px;font-weight:600;letter-spacing:.3px}
-header p{font-size:12px;color:#8fa4c4;margin-top:2px}
-.container{max-width:1320px;margin:0 auto;padding:16px}
-.search-bar{margin:0 0 16px;position:relative}
-.search-bar input{width:100%;padding:12px 16px 12px 42px;border:1px solid var(--border);border-radius:8px;font-size:14px;background:var(--white);outline:none;transition:border .2s}
-.search-bar input:focus{border-color:var(--blue)}
-.search-bar svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--gray)}
+header{background:var(--dark);color:#fff;padding:18px 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+header h1{font-size:20px;font-weight:600}header p{font-size:12px;color:#8fa4c4;margin-top:2px}
 
-/* Summary Cards */
-.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
-.summary-card{background:var(--white);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s,box-shadow .15s;border-left:4px solid var(--gray)}
-.summary-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.12)}
-.summary-card.active{box-shadow:0 0 0 2px var(--blue),var(--shadow)}
-.summary-card .sc-label{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--gray);font-weight:600}
-.summary-card .sc-value{font-size:28px;font-weight:700;margin:4px 0 0}
-.summary-card .sc-sub{font-size:11px;color:var(--gray)}
-.sc-op{border-left-color:var(--blue)}.sc-proc{border-left-color:var(--orange)}
-.sc-exp{border-left-color:var(--green)}.sc-prog{border-left-color:var(--purple)}
-.sc-found{border-left-color:var(--red)}.sc-crit{border-left-color:#c0392b}
-.sc-evol{border-left-color:#2980b9}.sc-total{border-left-color:var(--dark)}
+.container{max-width:1360px;margin:0 auto;padding:16px}
+.search-wrap{margin-bottom:16px;position:relative}
+.search-wrap input{width:100%;padding:11px 16px 11px 40px;border:1px solid var(--border);border-radius:8px;font-size:14px;background:#fff;outline:none}
+.search-wrap input:focus{border-color:var(--blue)}
+.search-wrap svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--gray)}
 
-/* Charts row */
-.charts-row{display:grid;grid-template-columns:280px 1fr;gap:16px;margin-bottom:16px}
-@media(max-width:768px){.charts-row{grid-template-columns:1fr}}
-.chart-box{background:var(--white);border-radius:10px;padding:18px;box-shadow:var(--shadow)}
-.chart-box h3{font-size:13px;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin-bottom:12px;font-weight:600}
+.section-title{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--dark);margin:18px 0 10px;padding-left:12px;border-left:4px solid var(--blue)}
 
-/* Donut */
-.donut-wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.donut-center-text{font-size:22px;font-weight:700}
-.donut-legend{display:flex;flex-direction:column;gap:6px}
-.donut-legend-item{display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 6px;border-radius:4px;transition:background .15s}
-.donut-legend-item:hover{background:var(--light)}
-.donut-legend-item.active{background:#e3f0ff}
-.donut-legend-item .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+/* VISAO GERAL */
+.vg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:6px}
+@media(max-width:700px){.vg-grid{grid-template-columns:repeat(2,1fr)}}
+.vg-card{background:#fff;border-radius:10px;padding:16px 18px;box-shadow:var(--shadow);text-align:center}
+.vg-card .vg-label{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--gray);font-weight:600}
+.vg-card .vg-val{font-size:30px;font-weight:700;margin:4px 0 0}
+.vg-card .vg-sub{font-size:11px;color:var(--gray)}
 
-/* Status bars */
-.status-bars{display:flex;flex-direction:column;gap:6px}
-.status-bar-row{display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 6px;border-radius:4px;transition:background .15s}
-.status-bar-row:hover{background:var(--light)}
-.status-bar-row.active{background:#e3f0ff}
-.status-bar-row .sb-label{width:140px;font-size:12px;flex-shrink:0;text-align:right;color:#555}
-.status-bar-row .sb-track{flex:1;height:18px;background:#eee;border-radius:4px;overflow:hidden;position:relative}
-.status-bar-row .sb-fill{height:100%;border-radius:4px;transition:width .4s}
-.status-bar-row .sb-count{width:30px;font-size:12px;font-weight:600;text-align:right;color:#555}
+/* STATUS SECTION */
+.st-grid{display:grid;grid-template-columns:1fr 1fr 280px;gap:12px;margin-bottom:6px}
+@media(max-width:900px){.st-grid{grid-template-columns:1fr}}
+.st-panel{background:#fff;border-radius:10px;padding:16px 18px;box-shadow:var(--shadow)}
+.st-panel h3{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);font-weight:700;margin-bottom:10px}
 
-/* Tabs */
-.tabs{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:0;overflow-x:auto;background:var(--white);border-radius:10px 10px 0 0;box-shadow:var(--shadow)}
-.tab-btn{padding:12px 20px;font-size:13px;font-weight:600;background:none;border:none;cursor:pointer;color:var(--gray);white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
-.tab-btn:hover{color:var(--dark)}
-.tab-btn.active{color:var(--dark);border-bottom-color:var(--blue)}
-.tab-btn .tab-count{display:inline-block;background:var(--light);border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px}
-.tab-btn.active .tab-count{background:var(--blue);color:var(--white)}
+.bar-row{display:flex;align-items:center;gap:8px;padding:5px 4px;border-radius:4px;cursor:pointer;transition:background .15s}
+.bar-row:hover{background:var(--light)}.bar-row.active{background:#e3f0ff}
+.bar-label{width:130px;font-size:12px;text-align:right;color:#555;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;height:16px;background:#eee;border-radius:3px;overflow:hidden;min-width:50px}
+.bar-fill{height:100%;border-radius:3px;transition:width .3s}
+.bar-val{min-width:36px;font-size:12px;font-weight:600;text-align:right;color:#555}
 
-.tab-content{display:none;background:var(--white);border-radius:0 0 10px 10px;box-shadow:var(--shadow);padding:16px}
+/* GAUGE */
+.gauge-wrap{display:flex;flex-direction:column;align-items:center}
+.gauge-counters{display:flex;gap:12px;margin-top:8px;font-size:11px}
+.gc{display:flex;align-items:center;gap:4px}
+.gc-dot{width:8px;height:8px;border-radius:50%}
+
+/* TABS */
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--border);overflow-x:auto;background:#fff;border-radius:10px 10px 0 0;box-shadow:var(--shadow);margin-top:16px}
+.tab-btn{padding:11px 18px;font-size:13px;font-weight:600;background:none;border:none;cursor:pointer;color:var(--gray);white-space:nowrap;border-bottom:3px solid transparent;transition:all .15s}
+.tab-btn:hover{color:var(--dark)}.tab-btn.active{color:var(--dark);border-bottom-color:var(--blue)}
+.tab-cnt{display:inline-block;background:var(--light);border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px}
+.tab-btn.active .tab-cnt{background:var(--blue);color:#fff}
+.tab-content{display:none;background:#fff;border-radius:0 0 10px 10px;box-shadow:var(--shadow);padding:14px 16px}
 .tab-content.active{display:block}
 
-/* Filter toggles inside tabs */
-.tab-filters{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
-.filter-group{display:flex;align-items:center;gap:4px}
-.filter-group label{font-size:12px;font-weight:600;color:var(--gray);margin-right:4px}
-.filter-btn{padding:5px 12px;font-size:12px;border:1px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;transition:all .15s;font-weight:500}
-.filter-btn:hover{background:var(--light)}
-.filter-btn.active{background:var(--blue);color:var(--white);border-color:var(--blue)}
-.clear-btn{padding:5px 14px;font-size:12px;border:1px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--red);font-weight:600;margin-left:auto;transition:all .15s}
-.clear-btn:hover{background:#ffeaea}
+.tf{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.fg{display:flex;align-items:center;gap:3px}
+.fg label{font-size:11px;font-weight:700;color:var(--gray);margin-right:3px}
+.fb{padding:4px 10px;font-size:11px;border:1px solid var(--border);border-radius:5px;background:#fff;cursor:pointer;transition:all .12s;font-weight:500}
+.fb:hover{background:var(--light)}.fb.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.cb{padding:4px 12px;font-size:11px;border:1px solid var(--border);border-radius:5px;background:#fff;cursor:pointer;color:var(--red);font-weight:700;margin-left:auto}
+.cb:hover{background:#ffeaea}
 
-/* Item cards */
-.items-list{display:flex;flex-direction:column;gap:6px}
-.item-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:box-shadow .15s}
-.item-card:hover{box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.item-header{display:grid;grid-template-columns:minmax(120px,180px) 1fr 100px 80px 140px;gap:10px;padding:12px 16px;align-items:center;cursor:pointer;transition:background .1s}
-.item-header:hover{background:#fafbfc}
-@media(max-width:900px){.item-header{grid-template-columns:1fr;gap:6px}}
-.item-epico{font-size:11px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
-.item-tema{font-size:13px;font-weight:600;color:#2c3e50}
-.item-badges{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
-.badge{padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.3px}
-.badge-crit{background:#fde8e8;color:#c0392b}.badge-evol{background:#e3f0ff;color:#2471a3}
-.badge-status{background:#f0f0f0;color:#555}
-
-/* Progress bar */
-.progress-wrap{display:flex;align-items:center;gap:8px}
-.progress-track{flex:1;height:8px;background:#eee;border-radius:4px;overflow:hidden;min-width:60px}
-.progress-fill{height:100%;border-radius:4px;transition:width .4s}
-.progress-pct{font-size:12px;font-weight:700;min-width:36px;text-align:right}
-
-.item-status-de{font-size:11px;padding:4px 8px;border-radius:4px;text-align:center;font-weight:600}
-.st-concluido{background:#e8f8f0;color:#1a7a4c}
-.st-andamento{background:#fff4e0;color:#b5760a}
-.st-pendente{background:#fde8e8;color:#c0392b}
-.st-validacao{background:#e3f0ff;color:#2471a3}
-.st-solucao{background:#f3e8ff;color:#7b2cbf}
-.st-contornado{background:#e8f4f8;color:#1a6b7a}
-.st-sem{background:#f0f0f0;color:#888}
-.st-resolvido{background:#e8f8f0;color:#1a7a4c}
-
-.item-owner{font-size:11px;color:var(--gray)}
-
-/* Expand detail */
-.item-detail{display:none;padding:12px 16px 14px;background:#fafbfc;border-top:1px solid var(--border);font-size:12px;line-height:1.6}
-.item-detail.open{display:block}
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:600px){.detail-grid{grid-template-columns:1fr}}
-.detail-block{padding:10px;background:var(--white);border-radius:6px;border:1px solid var(--border)}
-.detail-block h4{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin-bottom:4px;font-weight:700}
-.detail-block p{color:#444}
-
-/* Tab summary bar */
-.tab-summary{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
-.ts-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#555}
-.ts-dot{width:10px;height:10px;border-radius:50%}
-
-.expand-icon{transition:transform .2s;color:var(--gray);flex-shrink:0}
-.expand-icon.open{transform:rotate(180deg)}
-
-.no-results{padding:40px;text-align:center;color:var(--gray);font-size:14px}
-.group-color-bar{width:4px;border-radius:2px;position:absolute;left:0;top:0;bottom:0}
-.item-card{position:relative;padding-left:4px}
+/* CARDS */
+.ilist{display:flex;flex-direction:column;gap:5px}
+.ic{border:1px solid var(--border);border-radius:7px;overflow:hidden;transition:box-shadow .12s;position:relative}
+.ic:hover{box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.ih{display:grid;grid-template-columns:minmax(100px,160px) 1fr 110px 110px;gap:8px;padding:10px 14px;align-items:center;cursor:pointer;transition:background .1s}
+.ih:hover{background:#fafbfc}
+@media(max-width:850px){.ih{grid-template-columns:1fr;gap:5px}}
+.ie{font-size:10px;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.it{font-size:13px;font-weight:600;color:#2c3e50}
+.ib{display:flex;gap:3px;flex-wrap:wrap;margin-top:2px}
+.bg{padding:2px 7px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.3px}
+.bg-c{background:#fde8e8;color:#c0392b}.bg-e{background:#e3f0ff;color:#2471a3}.bg-s{background:#f0f0f0;color:#555}
+.pw{display:flex;align-items:center;gap:6px}
+.pt{flex:1;height:7px;background:#eee;border-radius:3px;overflow:hidden;min-width:50px}
+.pf{height:100%;border-radius:3px}.pp{font-size:12px;font-weight:700;min-width:34px;text-align:right}
+.so{font-size:11px;padding:3px 8px;border-radius:4px;text-align:center;font-weight:600;white-space:nowrap}
+.s-res{background:#e8f8f0;color:#1a7a4c}.s-val{background:#e3f0ff;color:#2471a3}.s-and{background:#fff4e0;color:#b5760a}
+.s-sol{background:#f3e8ff;color:#7b2cbf}.s-con{background:#e8f4f8;color:#1a6b7a}.s-sem{background:#f0f0f0;color:#888}
+.s-pen{background:#fde8e8;color:#c0392b}.s-own{background:#f5eaff;color:#6a1b9a}
+.ow{font-size:11px;color:var(--gray);text-align:right}
+.id{display:none;padding:10px 14px;background:#fafbfc;border-top:1px solid var(--border);font-size:12px;color:#444;line-height:1.6}
+.id.open{display:block}
+.id b{color:var(--gray);font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+.nr{padding:30px;text-align:center;color:var(--gray);font-size:13px}
+.gl-bar{width:4px;position:absolute;left:0;top:0;bottom:0;border-radius:2px 0 0 2px}
 </style>
 </head>
 <body>
-
 <header>
 <h1>Punchlist DTV+ - Exibicao & Distribuicao</h1>
 <p>Acompanhamento de Entregas | Atualizado em 11/05/2026</p>
 </header>
-
 <div class="container">
-
-<div class="search-bar">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-<input type="text" id="globalSearch" placeholder="Pesquisar por tema, owner, observacao..." oninput="applyAllFilters()">
+<div class="search-wrap">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+<input type="text" id="gs" placeholder="Pesquisar por tema, owner, observacao..." oninput="render()">
 </div>
-
-<div class="summary-grid" id="summaryCards"></div>
-
-<div class="charts-row">
-<div class="chart-box">
-<h3>Conclusao por Grupo</h3>
-<div class="donut-wrap" id="donutArea"></div>
+<div class="section-title">Visao Geral</div>
+<div class="vg-grid" id="vgArea"></div>
+<div class="section-title" style="border-left-color:var(--orange)">Status</div>
+<div class="st-grid">
+<div class="st-panel"><h3>Conclusao por Grupo</h3><div id="grpBars"></div></div>
+<div class="st-panel"><h3>Status Operacional</h3><div id="stBars"></div></div>
+<div class="st-panel"><h3>Indice de Atencao</h3><div id="gaugeArea"></div></div>
 </div>
-<div class="chart-box">
-<h3>Distribuicao por Status</h3>
-<div class="status-bars" id="statusBars"></div>
-</div>
-</div>
-
 <div class="tabs" id="tabBar"></div>
-<div id="tabContents"></div>
-
+<div id="tabsC"></div>
 </div>
-
 <script>
-const DATA=[
-{grupo:"OPERACAO",epico:"Estabilizacao da Operacao Lighthouse",tema:"Equalizacao da qualidade de video entre conteudos",conclusao:80,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Plat. Exibicao / Distribuicao & Media Hub",obs:"Conteudos nativos HDR nao estavam sendo reproduzidos no servidor",statusDE:"Concluido",obsDE:"Conteudos nativos HDR nao estavam sendo reproduzidos no servidor"},
-{grupo:"OPERACAO",epico:"Estabilizacao da Operacao Lighthouse",tema:"Equalizacao de qualidade de audio entre conteudos",conclusao:100,critico:"Sim",evolucao:"Nao",status:"Contornado",owner:"Plat. Exibicao / Distribuicao & Media Hub",obs:"Adequacao tecnica e operacional para minimizar picotes e desnivel no audio",statusDE:"Concluido",obsDE:"-"},
-{grupo:"OPERACAO",epico:"Estabilizacao da Operacao Lighthouse",tema:"Adaptacao operacao de audio na Captacao e Producao",conclusao:100,critico:"Nao",evolucao:"Nao",status:"Resolvido",owner:"Prod. Conteudo / Distribuicao & Media Hub",obs:"Adequacao de monitoracao na operacao do Sonoplasta do CTL-2 ION",statusDE:"Concluido",obsDE:"-"},
-{grupo:"OPERACAO",epico:"Conformacao de Conteudos",tema:"Definicao mezzanino para conteudos gravados",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Resolvido",owner:"Distribuicao & Media Hub",obs:"Definicao dos padroes para conteudos autorados e nao autorados",statusDE:"Concluido",obsDE:"Definicao dos padroes para conteudos autorados e nao autorados somente para esta fase do projeto com o fallback em ST"},
-{grupo:"OPERACAO",epico:"Conformacao de Conteudos",tema:"Definicao mezzanino para conteudo ao vivo",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Resolvido",owner:"Distribuicao & Media Hub",obs:"Definicao dos padroes para conteudos autorados e nao autorados",statusDE:"Concluido",obsDE:"Definicao dos padroes para conteudos autorados e nao autorados somente para esta fase do projeto com o fallback em ST"},
-{grupo:"OPERACAO",epico:"Conformacao de Conteudos",tema:"Conformacao Novelas",conclusao:90,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Prod. Conteudo / Distribuicao & Media Hub",obs:"Novelas I, II e III em 4K SDR e autoradas. Novela IV em analise. Pendente melhoria entrega do Globoplay.",statusDE:"Concluido",obsDE:"Confirmar entrega novela II com Midias"},
-{grupo:"OPERACAO",epico:"Conformacao de Conteudos",tema:"Conformacao Cinema",conclusao:50,critico:"Nao",evolucao:"Sim",status:"Em andamento",owner:"Canal TVG / Distribuicao & Media Hub",obs:"Autoracao de audio SAP e AD. Duplicacao de ID IBMS.",statusDE:"Em andamento",obsDE:"Como esta alteracao de ID ira ser refletida na grade DTV+"},
-{grupo:"OPERACAO",epico:"Conformacao de Conteudos",tema:"Conformacao Variedades ao vivo",conclusao:80,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Distribuicao & Media Hub",obs:"Pendente teste ponta a ponta",statusDE:"Em andamento",obsDE:"Perfil de autoracao no autorador da CTDS ja criado e testado. Falta definir procedimento operacional"},
-{grupo:"OPERACAO",epico:"Conformacao de Conteudos",tema:"Conformacao Esporte ao vivo",conclusao:100,critico:"Nao",evolucao:"Nao",status:"Resolvido",owner:"Prod. Conteudo / Distribuicao & Media Hub",obs:"Adequacao para 4K PQ e autoracao de audio",statusDE:"Concluido",obsDE:"-"},
-{grupo:"PROCESSOS",epico:"Copa do Mundo",tema:"Detalhamento das experiencias da Copa",conclusao:100,critico:"Nao",evolucao:"Sim",status:"Resolvido",owner:"Distribuicao & Media Hub",obs:"Modelos operacionais em discussao",statusDE:"Em andamento",obsDE:"Modelos operacionais em discussao"},
-{grupo:"PROCESSOS",epico:"Conformacao de Conteudos",tema:"Definicao do processo final de conformacao de conteudos ao vivo",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Resolvido",owner:"Distribuicao & Media Hub",obs:"Detalhamento da operacao sobre os SNPs e autoracao do CTDS",statusDE:"Concluido",obsDE:"Operacao sendo feita entre CTDS e Exibicao"},
-{grupo:"PROCESSOS",epico:"Grafismo",tema:"Desenho operacao de grafismo",conclusao:40,critico:"Sim",evolucao:"Nao",status:"Em andamento",owner:"Plat. Exibicao / Distribuicao & Media Hub",obs:"Detalhamento do modo de operar o novo grafismo",statusDE:"Em andamento",obsDE:"Critico pois a solucao da Harmonic que usaremos no evento ainda esta pendente de licenca"},
-{grupo:"PROCESSOS",epico:"Producao",tema:"Desenho e validacao da operacao CTL-4 JB 4K",conclusao:30,critico:"Sim",evolucao:"Nao",status:"Em solucao",owner:"Plat. Exibicao / Prod. Conteudo / Distribuicao & Media Hub",obs:"Detalhamento da entrega de sinal do JB para o ION/SP",statusDE:"Pendente",obsDE:"Critico por proximidade ao evento e falta de teste fim a fim."},
-{grupo:"EXPERIENCIA",epico:"Home Always On",tema:"Minha Conta",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+",obs:"Integracao realizada com SDK de Globo ID para login",statusDE:"Concluido",obsDE:"Integracao realizada com SDK de Globo ID para login"},
-{grupo:"EXPERIENCIA",epico:"Home Always On",tema:"Acesso a Grade",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+",obs:"Integracao para recuperar o EPG e exibir para o usuario",statusDE:"Concluido",obsDE:"Integracao para recuperar o EPG e exibir para o usuario"},
-{grupo:"EXPERIENCIA",epico:"Home Always On",tema:"Widgets de Servico",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+",obs:"Desenvolver a estrutura que recebera as exp persistentes",statusDE:"Concluido",obsDE:"Desenvolver a estrutura que recebera as exp persistentes"},
-{grupo:"EXPERIENCIA",epico:"Home Always On",tema:"Notificacoes & Alertas",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+ e Orchestra",obs:"Integracao com Orchestra para receber as formas de notificacao",statusDE:"Concluido",obsDE:"-"},
-{grupo:"EXPERIENCIA",epico:"Home Always On",tema:"Programa Atual",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+ e Orchestra",obs:"Integracao com Orchestra para receber informacoes do programa atual",statusDE:"Concluido",obsDE:"-"},
-{grupo:"EXPERIENCIA",epico:"Experiencias Persistentes",tema:"Grade de Programacao",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+",obs:"Integracao com EPG OTT para receber informacoes da Grade",statusDE:"Concluido",obsDE:"-"},
-{grupo:"EXPERIENCIA",epico:"Experiencias Persistentes",tema:"Previsao do Tempo",conclusao:0,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+",obs:"Migrar o front da exp para a nova UI da DTV+",statusDE:"Em andamento",obsDE:"Migrar o front da exp para a nova UI da DTV+"},
-{grupo:"EXPERIENCIA",epico:"Experiencias Persistentes",tema:"Mercado Financeiro",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+",obs:"Migrar o front da exp para a nova UI da DTV+",statusDE:"Em andamento",obsDE:"Perfil de autoracao no autorador da CTDS ja criado e testado"},
-{grupo:"EXPERIENCIA",epico:"Experiencias Persistentes",tema:"T-Commerce Patrocinado",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+ e Vendas",obs:"Migrar o front da exp com QR Code para a nova UI da DTV+",statusDE:"Concluido",obsDE:"Migrar o front da exp com QR Code para a nova UI da DTV+"},
-{grupo:"EXPERIENCIA",epico:"Experiencias Persistentes",tema:"Votacao & Resultado",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+",obs:"Integracao com a Plataforma de votacao",statusDE:"Em andamento",obsDE:"Modelos operacionais em discussao"},
-{grupo:"EXPERIENCIA",epico:"Experiencias Contextuais",tema:"Dados da Partida",conclusao:80,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+",obs:"Integracao com ecossistema do GE para receber dados de partidas",statusDE:"Concluido",obsDE:"Operacao sendo feita entre CTDS e Exibicao"},
-{grupo:"EXPERIENCIA",epico:"Experiencias Contextuais",tema:"Audio Personalizado",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+",obs:"Integracao com APIs da norma para disponibilizar os objetos de audio",statusDE:"Em andamento",obsDE:"Critico pois a solucao da Harmonic pendente de licenca"},
-{grupo:"EXPERIENCIA",epico:"Experiencias Contextuais",tema:"Dual view & Melhores Momentos",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Produto DTV+ e DTV Core",obs:"Integracao com SDK de DTV core para receber o player para multiview",statusDE:"Em andamento",obsDE:"Pendente mobilizacao da infra, teste do sinal com time do COT"},
-{grupo:"EXPERIENCIA",epico:"Experiencias Comerciais",tema:"DAI DTV+",conclusao:50,critico:"Sim",evolucao:"Sim",status:"Em solucao",owner:"Produto DTV+ e Proj. Solucoes Digitais",obs:"Testes de marcacao SCTE pendentes (11/05) e uso do Orquestrador (15/05)",statusDE:"Em andamento",obsDE:"Testes de marcacao SCTE pendentes (11/05) e uso do Orquestrador (15/05)"},
-{grupo:"PROGRAMACAO",epico:"Orchestra",tema:"Orchestra para G5",conclusao:90,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Harmonizacao BH/REC/BSB",statusDE:"Concluido",obsDE:"Harmonizacao BH/REC/BSB"},
-{grupo:"PROGRAMACAO",epico:"Orchestra",tema:"Integracao Orchestra app DTV+",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Grade e experiencias DTV+ pre-concept",statusDE:"Concluido",obsDE:"Grade e experiencias DTV+ pre-concept"},
-{grupo:"PROGRAMACAO",epico:"Orchestra",tema:"Experiencia Operacao Orchestra G5",conclusao:70,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Ajustes incrementais para melhorar eficiencia da operacao",statusDE:"Em andamento",obsDE:"Ajustes incrementais para melhorar eficiencia da operacao"},
-{grupo:"PROGRAMACAO",epico:"Orchestra",tema:"Concept DTV+ Gestao de Experiencias Persistentes",conclusao:90,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Gestao de experiencias perenes",statusDE:"Em andamento",obsDE:"Gestao de experiencias perenes"},
-{grupo:"PROGRAMACAO",epico:"Orchestra",tema:"Concept DTV+ Gestao de Notificacoes (MVP)",conclusao:70,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Notificacao por experiencia",statusDE:"Em andamento",obsDE:"Notificacao por experiencia"},
-{grupo:"PROGRAMACAO",epico:"Orchestra",tema:"Sincronismo Orchestra / Pebble",conclusao:30,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Aumento da precisao para entrada e saida de experiencias",statusDE:"Em andamento",obsDE:"Aumento da precisao para entrada e saida de experiencias"},
-{grupo:"PROGRAMACAO",epico:"Orchestra",tema:"Auditoria & Governanca",conclusao:30,critico:"Nao",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Rastreabilidade de operacoes",statusDE:"Em andamento",obsDE:"Rastreabilidade de operacoes"},
-{grupo:"PROGRAMACAO",epico:"Orchestra",tema:"Testes Integrados DTV+/DTV Play",conclusao:0,critico:"Nao",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Validacao integrada das plataformas",statusDE:"Em andamento",obsDE:"Validacao integrada das plataformas"},
-{grupo:"PROGRAMACAO",epico:"Orchestra Dados",tema:"Discovery dados para Prog. Experiencias",conclusao:60,critico:"Nao",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Necessidades de dados visando eficiencia operacional",statusDE:"Em andamento",obsDE:"Necessidades de dados visando eficiencia/eficacia operacional"},
-{grupo:"PROGRAMACAO",epico:"Orchestra Dados",tema:"Dados de engajamento das Interatividades NRT",conclusao:20,critico:"Nao",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Dados de engajamento near real time integrados ao Orchestra",statusDE:"Em andamento",obsDE:"Dados de engajamento near real time integrados ao Orchestra"},
-{grupo:"PROGRAMACAO",epico:"Interatividade",tema:"POC Parceiros Interatividade DTV",conclusao:100,critico:"Nao",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Avaliacao tecnica de parceiros",statusDE:"Concluido",obsDE:"Avaliacao tecnica de parceiros"},
-{grupo:"PROGRAMACAO",epico:"Interatividade",tema:"MVP Quiz DTV",conclusao:30,critico:"Nao",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Escolha de um parceiro e implementacao de um case simples",statusDE:"Em andamento",obsDE:"Escolha de um parceiro e implementacao de um case simples em producao"},
-{grupo:"PROGRAMACAO",epico:"Maestro",tema:"Maestro / Orquestrador Infra",conclusao:70,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Envio de eventos de atualizacao da grade",statusDE:"Em andamento",obsDE:"Envio de eventos de atualizacao da grade"},
-{grupo:"PROGRAMACAO",epico:"Maestro",tema:"Emissora DTV+ SP",conclusao:75,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Criacao do canal e Integracao Pebble",statusDE:"Em andamento",obsDE:"Criacao do canal e Integracao Pebble"},
-{grupo:"PROGRAMACAO",epico:"Maestro",tema:"Testes Emissora DTV+ SP",conclusao:0,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Produtos para Programacao",obs:"Testes Operacionais",statusDE:"Em andamento",obsDE:"Testes Operacionais"},
-{grupo:"FOUNDATION TECNICO",epico:"Centro Exibidor RJ",tema:"Playout Harmonic Rede",conclusao:100,critico:"Sim",evolucao:"Sim",status:"Resolvido",owner:"Distribuicao & Media Hub",obs:"Sistema comissionado; curva de cor pendente",statusDE:"Em andamento",obsDE:"Conteudos nativos HDR nao reproduzidos no servidor"},
-{grupo:"FOUNDATION TECNICO",epico:"Centro Exibidor RJ",tema:"Automacao Rede",conclusao:100,critico:"Sim",evolucao:"Nao",status:"Resolvido",owner:"Distribuicao & Media Hub",obs:"Sistema comissionado",statusDE:"Concluido",obsDE:"Auto On / Off normalizados"},
-{grupo:"FOUNDATION TECNICO",epico:"Centro Exibidor RJ",tema:"Matriz de emergencia",conclusao:75,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Distribuicao & Media Hub",obs:"Ajustes em andamento",statusDE:"Em andamento",obsDE:"Ainda nao operacional"},
-{grupo:"FOUNDATION TECNICO",epico:"Centro Exibidor RJ",tema:"Fluxo de midias RJ",conclusao:75,critico:"Sim",evolucao:"Sim",status:"Em validacao",owner:"Distribuicao & Media Hub",obs:"Distribuicao operacional em revisao",statusDE:"Em andamento",obsDE:"Definicao dos padroes para conteudos autorados e nao autorados"},
-{grupo:"FOUNDATION TECNICO",epico:"Centro Exibidor SP",tema:"Playout Harmonic",conclusao:25,critico:"Sim",evolucao:"Nao",status:"Pendente",owner:"Distribuicao & Media Hub",obs:"Equipamentos instalados",statusDE:"Pendente",obsDE:"Channel in box - Playout operacional e Grafismo em desenvolvimento"},
-{grupo:"FOUNDATION TECNICO",epico:"Centro Exibidor SP",tema:"Automacao SP",conclusao:50,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Distribuicao & Media Hub",obs:"Comissionamento em andamento",statusDE:"Concluido",obsDE:"Sistema ainda em estagio de comissionamento"},
-{grupo:"FOUNDATION TECNICO",epico:"Centro Exibidor SP",tema:"Core IP SP",conclusao:70,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Distribuicao & Media Hub",obs:"Integracao em andamento",statusDE:"Em andamento",obsDE:"Pendente integracao com o sistema legado (core IP TV 2.5)"},
-{grupo:"FOUNDATION TECNICO",epico:"Centro Exibidor SP",tema:"Fluxo de midias SP",conclusao:10,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Distribuicao & Media Hub",obs:"Criacao fluxo 4K",statusDE:"Em andamento",obsDE:"Fluxo EG x SP configurado. Interdependente a entrega da automacao Pebble"},
-{grupo:"FOUNDATION TECNICO",epico:"Core DTV+",tema:"Core Edge SP",conclusao:50,critico:"Sim",evolucao:"Sim",status:"Em andamento",owner:"Core DTV+",obs:"Integracao parcial",statusDE:"Concluido",obsDE:"Houve extravio de equipamentos no transporte"},
-{grupo:"FOUNDATION TECNICO",epico:"Core DTV+",tema:"Core Main",conclusao:100,critico:"Sim",evolucao:"Nao",status:"Sem acompanhamento",owner:"Core DTV+",obs:"Infra OK",statusDE:"Concluido",obsDE:"Infra OK"},
-{grupo:"FOUNDATION TECNICO",epico:"Core DTV+",tema:"Core Edge RJ",conclusao:75,critico:"Sim",evolucao:"Nao",status:"Sem acompanhamento",owner:"Core DTV+",obs:"Funcionalidades parciais",statusDE:"Em andamento",obsDE:"Modelos operacionais em discussao"},
-{grupo:"FOUNDATION TECNICO",epico:"Core DTV+",tema:"Core Edge BSA",conclusao:75,critico:"Sim",evolucao:"Nao",status:"Sem acompanhamento",owner:"Core DTV+",obs:"Infra em configuracao",statusDE:"Em andamento",obsDE:"-"},
-{grupo:"FOUNDATION TECNICO",epico:"Orquestrador",tema:"Concept + Jornadas",conclusao:75,critico:"Sim",evolucao:"Nao",status:"Sem acompanhamento",owner:"Orquestracao",obs:"Em levantamento",statusDE:"Em andamento",obsDE:"Infraestrutura em desenvolvimento"},
-{grupo:"FOUNDATION TECNICO",epico:"Orquestrador",tema:"Criacao projeto",conclusao:75,critico:"Sim",evolucao:"Nao",status:"Sem acompanhamento",owner:"Orquestracao + HCL",obs:"Workers em andamento",statusDE:"Em andamento",obsDE:"Infraestrutura em desenvolvimento"},
-{grupo:"FOUNDATION TECNICO",epico:"Orquestrador",tema:"Integracao Componentes",conclusao:50,critico:"Sim",evolucao:"Nao",status:"Sem acompanhamento",owner:"Orquestracao",obs:"Sensores e transmissao",statusDE:"Concluido",obsDE:"Sensores e transmissao"},
-{grupo:"FOUNDATION TECNICO",epico:"Orquestrador",tema:"Cross Seguranca",conclusao:75,critico:"Sim",evolucao:"Nao",status:"Sem acompanhamento",owner:"Orquestracao",obs:"Permissoes em definicao",statusDE:"Concluido",obsDE:"Permissoes em definicao"},
-{grupo:"FOUNDATION TECNICO",epico:"Orquestrador",tema:"Monitoramento",conclusao:25,critico:"Sim",evolucao:"Nao",status:"Sem acompanhamento",owner:"COE DevOps",obs:"Estrutura em criacao",statusDE:"Concluido",obsDE:"Estrutura em criacao"},
-{grupo:"FOUNDATION TECNICO",epico:"Copa do Mundo",tema:"Origin Server",conclusao:75,critico:"Sim",evolucao:"Nao",status:"Sem acompanhamento",owner:"Orquestracao",obs:"Integracao em andamento",statusDE:"Concluido",obsDE:"Integracao em andamento"},
-{grupo:"FOUNDATION TECNICO",epico:"Copa do Mundo",tema:"Encoder",conclusao:50,critico:"Sim",evolucao:"Nao",status:"Sem acompanhamento",owner:"HCL",obs:"Workers ativos",statusDE:"Concluido",obsDE:"Workers ativos"},
-{grupo:"FOUNDATION TECNICO",epico:"Copa do Mundo",tema:"Empacotador",conclusao:25,critico:"Sim",evolucao:"Nao",status:"Sem acompanhamento",owner:"HCL",obs:"Primeira entrega feita",statusDE:"Concluido",obsDE:"Primeira entrega feita"},
-{grupo:"FOUNDATION TECNICO",epico:"Copa do Mundo",tema:"Gateway",conclusao:25,critico:"Sim",evolucao:"Nao",status:"Sem acompanhamento",owner:"HCL",obs:"Primeira entrega feita",statusDE:"Concluido",obsDE:"Primeira entrega feita"}
+const D=[
+{g:"OPERACAO",ep:"Estabilizacao da Operacao Lighthouse",t:"Equalizacao da qualidade de video entre conteudos",c:80,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Plat. Exibicao / Dist. & Media Hub",ob:"Conteudos nativos HDR nao estavam sendo reproduzidos no servidor"},
+{g:"OPERACAO",ep:"Estabilizacao da Operacao Lighthouse",t:"Equalizacao de qualidade de audio entre conteudos",c:100,cr:"Sim",ev:"Nao",st:"Contornado",ow:"Plat. Exibicao / Dist. & Media Hub",ob:"Adequacao tecnica e operacional para minimizar picotes e desnivel no audio"},
+{g:"OPERACAO",ep:"Estabilizacao da Operacao Lighthouse",t:"Adaptacao operacao de audio na Captacao e Producao",c:100,cr:"Nao",ev:"Nao",st:"Resolvido",ow:"Prod. Conteudo / Dist. & Media Hub",ob:"Adequacao de monitoracao na operacao do Sonoplasta do CTL-2 ION"},
+{g:"OPERACAO",ep:"Conformacao de Conteudos",t:"Definicao mezzanino para conteudos gravados",c:100,cr:"Sim",ev:"Sim",st:"Resolvido",ow:"Dist. & Media Hub",ob:"Definicao dos padroes para conteudos autorados e nao autorados somente para esta fase do projeto com o fallback em ST"},
+{g:"OPERACAO",ep:"Conformacao de Conteudos",t:"Definicao mezzanino para conteudo ao vivo",c:100,cr:"Sim",ev:"Sim",st:"Resolvido",ow:"Dist. & Media Hub",ob:"Definicao dos padroes para conteudos autorados e nao autorados somente para esta fase do projeto com o fallback em ST"},
+{g:"OPERACAO",ep:"Conformacao de Conteudos",t:"Conformacao Novelas",c:90,cr:"Sim",ev:"Sim",st:"Matheus",ow:"Prod. Conteudo / Dist. & Media Hub",ob:"Novelas I, II e III em 4K SDR e autoradas. Novela IV em analise. Pendente melhoria entrega do Globoplay. Confirmar entrega novela II com Midias"},
+{g:"OPERACAO",ep:"Conformacao de Conteudos",t:"Conformacao Cinema",c:50,cr:"Nao",ev:"Sim",st:"Matheus",ow:"Canal TVG / Dist. & Media Hub",ob:"Como esta alteracao de ID ira ser refletida na grade DTV+"},
+{g:"OPERACAO",ep:"Conformacao de Conteudos",t:"Conformacao Variedades ao vivo",c:80,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Dist. & Media Hub",ob:"Pendente teste ponta a ponta"},
+{g:"OPERACAO",ep:"Conformacao de Conteudos",t:"Conformacao Esporte ao vivo",c:100,cr:"Nao",ev:"Nao",st:"Resolvido",ow:"Prod. Conteudo / Dist. & Media Hub",ob:"Adequacao para 4K PQ e autoracao de audio"},
+{g:"PROCESSOS",ep:"Copa do Mundo",t:"Detalhamento das experiencias da Copa",c:100,cr:"Nao",ev:"Sim",st:"Resolvido",ow:"Dist. & Media Hub",ob:"Modelos operacionais em discussao"},
+{g:"PROCESSOS",ep:"Conformacao de Conteudos",t:"Definicao do processo final de conformacao de conteudos ao vivo",c:100,cr:"Sim",ev:"Sim",st:"Resolvido",ow:"Dist. & Media Hub",ob:"Operacao sendo feita entre CTDS e Exibicao"},
+{g:"PROCESSOS",ep:"Grafismo",t:"Desenho operacao de grafismo",c:40,cr:"Sim",ev:"Nao",st:"Garcia",ow:"Plat. Exibicao / Dist. & Media Hub",ob:"Critico pois a solucao da Harmonic que usaremos no evento ainda esta pendente de licenca"},
+{g:"PROCESSOS",ep:"Producao",t:"Desenho e validacao da operacao CTL-4 JB 4K",c:30,cr:"Sim",ev:"Nao",st:"Em solucao",ow:"Plat. Exibicao / Prod. Conteudo / Dist. & Media Hub",ob:"Critico por proximidade ao evento e falta de teste fim a fim."},
+{g:"EXPERIENCIA",ep:"Home Always On",t:"Minha Conta",c:100,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+",ob:"Integracao realizada com SDK de Globo ID para login"},
+{g:"EXPERIENCIA",ep:"Home Always On",t:"Acesso a Grade",c:100,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+",ob:"Integracao para recuperar o EPG e exibir para o usuario"},
+{g:"EXPERIENCIA",ep:"Home Always On",t:"Widgets de Servico",c:100,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+",ob:"Desenvolver a estrutura que recebera as exp persistentes"},
+{g:"EXPERIENCIA",ep:"Home Always On",t:"Notificacoes & Alertas",c:100,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+ e Orchestra",ob:"Integracao com Orchestra para receber as formas de notificacao"},
+{g:"EXPERIENCIA",ep:"Home Always On",t:"Programa Atual",c:100,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+ e Orchestra",ob:"Integracao com Orchestra para receber informacoes do programa atual"},
+{g:"EXPERIENCIA",ep:"Experiencias Persistentes",t:"Grade de Programacao",c:100,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+",ob:"Integracao com EPG OTT para receber informacoes da Grade"},
+{g:"EXPERIENCIA",ep:"Experiencias Persistentes",t:"Previsao do Tempo",c:0,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+",ob:"Migrar o front da exp para a nova UI da DTV+"},
+{g:"EXPERIENCIA",ep:"Experiencias Persistentes",t:"Mercado Financeiro",c:100,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+",ob:"Migrar o front da exp para a nova UI da DTV+"},
+{g:"EXPERIENCIA",ep:"Experiencias Persistentes",t:"T-Commerce Patrocinado",c:100,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+ e Vendas",ob:"Migrar o front da exp com QR Code para a nova UI da DTV+"},
+{g:"EXPERIENCIA",ep:"Experiencias Persistentes",t:"Votacao & Resultado",c:100,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+",ob:"Integracao com a Plataforma de votacao"},
+{g:"EXPERIENCIA",ep:"Experiencias Contextuais",t:"Dados da Partida",c:80,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+",ob:"Integracao com ecossistema do GE para receber dados de partidas"},
+{g:"EXPERIENCIA",ep:"Experiencias Contextuais",t:"Audio Personalizado",c:100,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+",ob:"Integracao com APIs da norma para disponibilizar os objetos de audio"},
+{g:"EXPERIENCIA",ep:"Experiencias Contextuais",t:"Dual view & Melhores Momentos",c:100,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Produto DTV+ e DTV Core",ob:"Pendente mobilizacao da infra, teste do sinal com time do COT e testes com Op Videos"},
+{g:"EXPERIENCIA",ep:"Experiencias Comerciais",t:"DAI DTV+",c:0,cr:"Sim",ev:"Nao",st:"Em solucao",ow:"Produto DTV+ e Proj. Solucoes Digitais",ob:"Testes de marcacao SCTE pendentes (11/05) e uso do Orquestrador (15/05)"},
+{g:"PROGRAMACAO",ep:"Orchestra",t:"Orchestra para G5",c:90,cr:"Sim",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Harmonizacao BH/REC/BSB"},
+{g:"PROGRAMACAO",ep:"Orchestra",t:"Integracao Orchestra app DTV+",c:100,cr:"Sim",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Grade e experiencias DTV+ pre-concept"},
+{g:"PROGRAMACAO",ep:"Orchestra",t:"Experiencia Operacao Orchestra G5",c:70,cr:"Sim",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Ajustes incrementais para melhorar eficiencia da operacao"},
+{g:"PROGRAMACAO",ep:"Orchestra",t:"Concept DTV+ Gestao de Experiencias Persistentes",c:90,cr:"Sim",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Gestao de experiencias perenes"},
+{g:"PROGRAMACAO",ep:"Orchestra",t:"Concept DTV+ Gestao de Notificacoes (MVP)",c:70,cr:"Sim",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Notificacao por experiencia"},
+{g:"PROGRAMACAO",ep:"Orchestra",t:"Sincronismo Orchestra / Pebble",c:30,cr:"Sim",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Aumento da precisao para entrada e saida de experiencias"},
+{g:"PROGRAMACAO",ep:"Orchestra",t:"Auditoria & Governanca",c:30,cr:"Nao",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Rastreabilidade de operacoes"},
+{g:"PROGRAMACAO",ep:"Orchestra",t:"Testes Integrados DTV+/DTV Play",c:0,cr:"Nao",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Validacao integrada das plataformas"},
+{g:"PROGRAMACAO",ep:"Orchestra Dados",t:"Discovery dados para Prog. Experiencias",c:60,cr:"Nao",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Necessidades de dados visando eficiencia operacional"},
+{g:"PROGRAMACAO",ep:"Orchestra Dados",t:"Dados de engajamento das Interatividades NRT",c:20,cr:"Nao",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Dados de engajamento near real time integrados ao Orchestra"},
+{g:"PROGRAMACAO",ep:"Interatividade",t:"POC Parceiros Interatividade DTV",c:100,cr:"Nao",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Avaliacao tecnica de parceiros"},
+{g:"PROGRAMACAO",ep:"Interatividade",t:"MVP Quiz DTV",c:30,cr:"Nao",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Escolha de um parceiro e implementacao de um case simples"},
+{g:"PROGRAMACAO",ep:"Maestro",t:"Maestro / Orquestrador Infra",c:70,cr:"Sim",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Envio de eventos de atualizacao da grade"},
+{g:"PROGRAMACAO",ep:"Maestro",t:"Emissora DTV+ SP",c:75,cr:"Sim",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Criacao do canal e Integracao Pebble"},
+{g:"PROGRAMACAO",ep:"Maestro",t:"Testes Emissora DTV+ SP",c:0,cr:"Sim",ev:"Sim",st:"Rael",ow:"Produtos para Programacao",ob:"Testes Operacionais"},
+{g:"FOUNDATION TECNICO",ep:"Centro Exibidor RJ",t:"Playout Harmonic Rede",c:100,cr:"Sim",ev:"Sim",st:"Resolvido",ow:"Dist. & Media Hub",ob:"Sistema comissionado; curva de cor pendente"},
+{g:"FOUNDATION TECNICO",ep:"Centro Exibidor RJ",t:"Automacao Rede",c:100,cr:"Sim",ev:"Nao",st:"Resolvido",ow:"Dist. & Media Hub",ob:"Auto On / Off normalizados"},
+{g:"FOUNDATION TECNICO",ep:"Centro Exibidor RJ",t:"Matriz de emergencia",c:75,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Dist. & Media Hub",ob:"Ainda nao operacional"},
+{g:"FOUNDATION TECNICO",ep:"Centro Exibidor RJ",t:"Fluxo de midias RJ",c:75,cr:"Sim",ev:"Sim",st:"Em validacao",ow:"Dist. & Media Hub",ob:"Distribuicao operacional em revisao"},
+{g:"FOUNDATION TECNICO",ep:"Centro Exibidor SP",t:"Playout Harmonic",c:25,cr:"Sim",ev:"Nao",st:"Garcia",ow:"Dist. & Media Hub",ob:"Channel in box - Playout operacional e Grafismo em desenvolvimento"},
+{g:"FOUNDATION TECNICO",ep:"Centro Exibidor SP",t:"Automacao SP",c:50,cr:"Sim",ev:"Sim",st:"Balisa",ow:"Dist. & Media Hub",ob:"Comissionamento em andamento"},
+{g:"FOUNDATION TECNICO",ep:"Centro Exibidor SP",t:"Core IP SP",c:70,cr:"Sim",ev:"Sim",st:"Balisa",ow:"Dist. & Media Hub",ob:"Integracao em andamento"},
+{g:"FOUNDATION TECNICO",ep:"Centro Exibidor SP",t:"Fluxo de midias SP",c:10,cr:"Sim",ev:"Sim",st:"Balisa",ow:"Dist. & Media Hub",ob:"Fluxo EG x SP configurado. Interdependente a entrega da automacao Pebble"},
+{g:"FOUNDATION TECNICO",ep:"Core DTV+",t:"Core Edge SP",c:50,cr:"Sim",ev:"Sim",st:"Balisa",ow:"Core DTV+",ob:"Houve extravio de equipamentos no transporte"},
+{g:"FOUNDATION TECNICO",ep:"Core DTV+",t:"Core Main",c:100,cr:"Sim",ev:"Nao",st:"Sem acompanhamento",ow:"Core DTV+",ob:"Infra OK"},
+{g:"FOUNDATION TECNICO",ep:"Core DTV+",t:"Core Edge RJ",c:75,cr:"Sim",ev:"Nao",st:"Sem acompanhamento",ow:"Core DTV+",ob:"Funcionalidades parciais"},
+{g:"FOUNDATION TECNICO",ep:"Core DTV+",t:"Core Edge BSA",c:75,cr:"Sim",ev:"Nao",st:"Sem acompanhamento",ow:"Core DTV+",ob:"Infra em configuracao"},
+{g:"FOUNDATION TECNICO",ep:"Orquestrador",t:"Concept + Jornadas",c:75,cr:"Sim",ev:"Nao",st:"Sem acompanhamento",ow:"Orquestracao",ob:"Em levantamento"},
+{g:"FOUNDATION TECNICO",ep:"Orquestrador",t:"Criacao projeto",c:75,cr:"Sim",ev:"Nao",st:"Sem acompanhamento",ow:"Orquestracao + HCL",ob:"Workers em andamento"},
+{g:"FOUNDATION TECNICO",ep:"Orquestrador",t:"Integracao Componentes",c:50,cr:"Sim",ev:"Nao",st:"Sem acompanhamento",ow:"Orquestracao",ob:"Sensores e transmissao"},
+{g:"FOUNDATION TECNICO",ep:"Orquestrador",t:"Cross Seguranca",c:75,cr:"Sim",ev:"Nao",st:"Sem acompanhamento",ow:"Orquestracao",ob:"Permissoes em definicao"},
+{g:"FOUNDATION TECNICO",ep:"Orquestrador",t:"Monitoramento",c:25,cr:"Sim",ev:"Nao",st:"Sem acompanhamento",ow:"COE DevOps",ob:"Estrutura em criacao"},
+{g:"FOUNDATION TECNICO",ep:"Copa do Mundo",t:"Origin Server",c:75,cr:"Sim",ev:"Nao",st:"Sem acompanhamento",ow:"Orquestracao",ob:"Integracao em andamento"},
+{g:"FOUNDATION TECNICO",ep:"Copa do Mundo",t:"Encoder",c:50,cr:"Sim",ev:"Nao",st:"Sem acompanhamento",ow:"HCL",ob:"Workers ativos"},
+{g:"FOUNDATION TECNICO",ep:"Copa do Mundo",t:"Empacotador",c:25,cr:"Sim",ev:"Nao",st:"Sem acompanhamento",ow:"HCL",ob:"Primeira entrega feita"},
+{g:"FOUNDATION TECNICO",ep:"Copa do Mundo",t:"Gateway",c:25,cr:"Sim",ev:"Nao",st:"Sem acompanhamento",ow:"HCL",ob:"Primeira entrega feita"}
 ];
 
-const GROUPS=[
-{key:"OPERACAO",label:"Operacao",color:"#2196F3"},
-{key:"PROCESSOS",label:"Processos",color:"#FF9800"},
-{key:"EXPERIENCIA",label:"Experiencia",color:"#4CAF50"},
-{key:"PROGRAMACAO",label:"Programacao",color:"#9C27B0"},
-{key:"FOUNDATION TECNICO",label:"Foundation Tecnico",color:"#e74c3c"}
+const GR=[
+{k:"OPERACAO",l:"Operacao",cl:"#2196F3"},
+{k:"PROCESSOS",l:"Processos",cl:"#FF9800"},
+{k:"EXPERIENCIA",l:"Experiencia",cl:"#4CAF50"},
+{k:"PROGRAMACAO",l:"Programacao",cl:"#9C27B0"},
+{k:"FOUNDATION TECNICO",l:"Foundation Tecnico",cl:"#e74c3c"}
 ];
 const TABS=[
-{key:"op_proc",label:"Operacao e Processos",groups:["OPERACAO","PROCESSOS"],showAll:true},
-{key:"exp",label:"Experiencia",groups:["EXPERIENCIA"],showAll:false},
-{key:"prog",label:"Programacao",groups:["PROGRAMACAO"],showAll:false},
-{key:"found",label:"Foundation Tecnico",groups:["FOUNDATION TECNICO"],showAll:false}
+{k:"OPERACAO",l:"Operacao"},
+{k:"PROCESSOS",l:"Processos"},
+{k:"EXPERIENCIA",l:"Experiencia"},
+{k:"PROGRAMACAO",l:"Programacao"},
+{k:"FOUNDATION TECNICO",l:"Foundation Tecnico"}
 ];
 
-let activeGroupFilter=null;
-let activeStatusFilter=null;
-let tabFilters={exp:{evolucao:"Sim",critico:"Todos"},prog:{evolucao:"Sim",critico:"Todos"},found:{evolucao:"Sim",critico:"Todos"}};
-let activeTab="op_proc";
+let fGrp=null,fSt=null,aTab="OPERACAO";
+let tF={};
+TABS.forEach(t=>tF[t.k]={cr:"Todos",ev:"Todos",done:"Todos"});
 
-function gc(c){return GROUPS.find(g=>g.key===c)?.color||"#999"}
-function progColor(v){return v<30?"var(--prog-red)":v<70?"var(--prog-yellow)":"var(--prog-green)"}
-function stClass(s){const m={"Concluido":"st-concluido","Em andamento":"st-andamento","Pendente":"st-pendente","Em validacao":"st-validacao","Em solucao":"st-solucao","Contornado":"st-contornado","Sem acompanhamento":"st-sem","Resolvido":"st-resolvido"};return m[s]||"st-sem"}
-
-function buildSummary(){
-const el=document.getElementById("summaryCards");
-const total=DATA.length;
-const avgC=Math.round(DATA.reduce((a,d)=>a+d.conclusao,0)/total);
-const crits=DATA.filter(d=>d.critico==="Sim").length;
-const evols=DATA.filter(d=>d.evolucao==="Sim").length;
-const critEvol=DATA.filter(d=>d.critico==="Sim"&&d.evolucao==="Sim").length;
-const cards=[
-{cls:"sc-total",label:"Conclusao Geral",value:avgC+"%",sub:total+" itens rastreados",click:null},
-{cls:"sc-crit",label:"Criticos Copa",value:crits,sub:"de "+total+" itens",click:()=>toggleSumFilter("critico")},
-{cls:"sc-evol",label:"Com Evolucao",value:evols,sub:"de "+total+" itens",click:()=>toggleSumFilter("evolucao")},
-{cls:"sc-crit",label:"Critico + Evolucao",value:critEvol,sub:"Pauta do Diretor",click:()=>toggleSumFilter("critevol")}
-];
-GROUPS.forEach(g=>{
-const items=DATA.filter(d=>d.grupo===g.key);
-const avg=Math.round(items.reduce((a,d)=>a+d.conclusao,0)/items.length);
-cards.push({cls:"sc-"+g.key.substring(0,4).toLowerCase(),label:g.label,value:avg+"%",sub:items.length+" itens",click:()=>{activeGroupFilter=activeGroupFilter===g.key?null:g.key;activeStatusFilter=null;applyAllFilters()}});
-});
-el.innerHTML=cards.map((c,i)=>`<div class="summary-card ${c.cls}" id="sc${i}" onclick="${c.click?'('+c.click+')()':''}"style="cursor:${c.click?'pointer':'default'}"><div class="sc-label">${c.label}</div><div class="sc-value">${c.value}</div><div class="sc-sub">${c.sub}</div></div>`).join("");
+function gc(k){return GR.find(g=>g.k===k)?.cl||"#999"}
+function pc(v){return v<30?"var(--pr)":v<70?"var(--py)":"var(--pg)"}
+function sc(s){
+const m={"Resolvido":"s-res","Em validacao":"s-val","Em andamento":"s-and","Em solucao":"s-sol",
+"Contornado":"s-con","Sem acompanhamento":"s-sem","Pendente":"s-pen"};
+return m[s]||"s-own";
 }
 
-function toggleSumFilter(t){
-activeGroupFilter=null;activeStatusFilter=null;
-applyAllFilters();
+function buildVG(){
+const n=D.length, avg=Math.round(D.reduce((a,d)=>a+d.c,0)/n);
+const cr=D.filter(d=>d.cr==="Sim").length;
+const ev=D.filter(d=>d.ev==="Sim").length;
+const ce=D.filter(d=>d.cr==="Sim"&&d.ev==="Sim").length;
+document.getElementById("vgArea").innerHTML=[
+{l:"Conclusao Geral",v:avg+"%",s:n+" itens rastreados"},
+{l:"Criticos Copa",v:cr,s:"de "+n+" itens"},
+{l:"Com Evolucao",v:ev,s:"de "+n+" itens"},
+{l:"Critico + Evolucao",v:ce,s:"Pauta do Diretor"}
+].map(c=>'<div class="vg-card"><div class="vg-label">'+c.l+'</div><div class="vg-val">'+c.v+'</div><div class="vg-sub">'+c.s+'</div></div>').join("");
 }
 
-function buildDonut(){
-const el=document.getElementById("donutArea");
-const r=50,cx=60,cy=60,circ=2*Math.PI*r;
-let segments="";let offset=0;
-const groupData=GROUPS.map(g=>{
-const items=DATA.filter(d=>d.grupo===g.key);
-return{...g,count:items.length,avg:Math.round(items.reduce((a,d)=>a+d.conclusao,0)/items.length)};
-});
-const totalItems=DATA.length;
-groupData.forEach(g=>{
-const pct=g.count/totalItems;
-const dash=pct*circ;
-segments+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${g.color}" stroke-width="20" stroke-dasharray="${dash} ${circ-dash}" stroke-dashoffset="${-offset}" style="cursor:pointer" onclick="filterByGroup('${g.key}')"><title>${g.label}: ${g.count} itens (${g.avg}%)</title></circle>`;
-offset+=dash;
-});
-const avgAll=Math.round(DATA.reduce((a,d)=>a+d.conclusao,0)/DATA.length);
-el.innerHTML=`<svg viewBox="0 0 120 120" width="120" height="120"><circle cx="${cx}" cy="${cy}" r="30" fill="white"/>${segments}<text x="${cx}" y="${cy+2}" text-anchor="middle" font-size="16" font-weight="700" fill="#2c3e50">${avgAll}%</text><text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="7" fill="#999">geral</text></svg><div class="donut-legend">${groupData.map(g=>`<div class="donut-legend-item${activeGroupFilter===g.key?' active':''}" onclick="filterByGroup('${g.key}')"><span class="dot" style="background:${g.color}"></span><span>${g.label} (${g.count}) - ${g.avg}%</span></div>`).join("")}</div>`;
-}
-
-function filterByGroup(k){activeGroupFilter=activeGroupFilter===k?null:k;activeStatusFilter=null;applyAllFilters()}
-
-function buildStatusBars(){
-const el=document.getElementById("statusBars");
-const statuses=["Resolvido","Em validacao","Em andamento","Em solucao","Contornado","Pendente","Sem acompanhamento"];
-const colors={"Resolvido":"#27ae60","Em validacao":"#2471a3","Em andamento":"#f39c12","Em solucao":"#7b2cbf","Contornado":"#1a6b7a","Pendente":"#e74c3c","Sem acompanhamento":"#999"};
-const total=DATA.length;
-el.innerHTML=statuses.map(s=>{
-const count=DATA.filter(d=>d.status===s).length;
-if(count===0)return"";
-const pct=(count/total*100);
-return`<div class="status-bar-row${activeStatusFilter===s?' active':''}" onclick="filterByStatus('${s}')"><span class="sb-label">${s}</span><div class="sb-track"><div class="sb-fill" style="width:${pct}%;background:${colors[s]}"></div></div><span class="sb-count">${count}</span></div>`;
+function buildGrpBars(){
+const el=document.getElementById("grpBars");
+el.innerHTML=GR.map(g=>{
+const items=D.filter(d=>d.g===g.k);
+const avg=Math.round(items.reduce((a,d)=>a+d.c,0)/items.length);
+return '<div class="bar-row'+(fGrp===g.k?' active':'')+'" onclick="clickGrp(\''+g.k+'\')">'+
+'<span class="bar-label">'+g.l+' ('+items.length+')</span>'+
+'<div class="bar-track"><div class="bar-fill" style="width:'+avg+'%;background:'+g.cl+'"></div></div>'+
+'<span class="bar-val">'+avg+'%</span></div>';
 }).join("");
 }
 
-function filterByStatus(s){activeStatusFilter=activeStatusFilter===s?null:s;activeGroupFilter=null;applyAllFilters()}
+function clickGrp(k){fGrp=fGrp===k?null:k;fSt=null;render()}
+
+function buildStBars(){
+const el=document.getElementById("stBars");
+const sts={};D.forEach(d=>{sts[d.st]=(sts[d.st]||0)+1});
+const sorted=Object.entries(sts).sort((a,b)=>b[1]-a[1]);
+const mx=sorted[0]?sorted[0][1]:1;
+const colors={"Resolvido":"#27ae60","Em validacao":"#2471a3","Em andamento":"#f39c12","Em solucao":"#7b2cbf",
+"Contornado":"#1a6b7a","Sem acompanhamento":"#999","Pendente":"#e74c3c",
+"Matheus":"#e67e22","Garcia":"#d35400","Rael":"#8e44ad","Balisa":"#2c3e50"};
+el.innerHTML=sorted.map(([s,cnt])=>{
+const pct=(cnt/mx*100);
+const col=colors[s]||"#7f8c8d";
+return '<div class="bar-row'+(fSt===s?' active':'')+'" onclick="clickSt(\''+s+'\')">'+
+'<span class="bar-label">'+s+'</span>'+
+'<div class="bar-track"><div class="bar-fill" style="width:'+pct+'%;background:'+col+'"></div></div>'+
+'<span class="bar-val">'+cnt+'</span></div>';
+}).join("");
+}
+
+function clickSt(s){fSt=fSt===s?null:s;fGrp=null;render()}
+
+function buildGauge(){
+const el=document.getElementById("gaugeArea");
+const crits=D.filter(d=>d.cr==="Sim");
+const gap=crits.length?Math.round(crits.reduce((a,d)=>a+(100-d.c),0)/crits.length):0;
+const lo=crits.filter(d=>d.c<30).length;
+const mid=crits.filter(d=>d.c>=30&&d.c<70).length;
+const hi=crits.filter(d=>d.c>=70).length;
+const angle=-90+gap*1.8;
+const needleRad=angle*Math.PI/180;
+const nx=100+70*Math.cos(needleRad),ny=100+70*Math.sin(needleRad);
+let label,labelCol;
+if(gap<30){label="Baixa";labelCol="#27ae60"}
+else if(gap<60){label="Moderada";labelCol="#f39c12"}
+else{label="Alta";labelCol="#e74c3c"}
+el.innerHTML='<div class="gauge-wrap">'+
+'<svg viewBox="0 0 200 120" width="220" height="130">'+
+'<path d="M20,100 A80,80 0 0,1 66.86,30.72" fill="none" stroke="#27ae60" stroke-width="14" stroke-linecap="round"/>'+
+'<path d="M66.86,30.72 A80,80 0 0,1 133.14,30.72" fill="none" stroke="#f39c12" stroke-width="14" stroke-linecap="round"/>'+
+'<path d="M133.14,30.72 A80,80 0 0,1 180,100" fill="none" stroke="#e74c3c" stroke-width="14" stroke-linecap="round"/>'+
+'<line x1="100" y1="100" x2="'+nx+'" y2="'+ny+'" stroke="'+labelCol+'" stroke-width="3" stroke-linecap="round"/>'+
+'<circle cx="100" cy="100" r="5" fill="'+labelCol+'"/>'+
+'<text x="100" y="90" text-anchor="middle" font-size="22" font-weight="700" fill="'+labelCol+'">'+gap+'</text>'+
+'<text x="100" y="108" text-anchor="middle" font-size="10" fill="#888">'+label+'</text>'+
+'<text x="24" y="116" font-size="8" fill="#27ae60">Baixa</text>'+
+'<text x="85" y="18" font-size="8" fill="#f39c12">Moderada</text>'+
+'<text x="155" y="116" font-size="8" fill="#e74c3c">Alta</text>'+
+'</svg>'+
+'<div class="gauge-counters">'+
+'<div class="gc"><span class="gc-dot" style="background:#e74c3c"></span>&lt;30%: '+lo+'</div>'+
+'<div class="gc"><span class="gc-dot" style="background:#f39c12"></span>30-70%: '+mid+'</div>'+
+'<div class="gc"><span class="gc-dot" style="background:#27ae60"></span>&gt;70%: '+hi+'</div>'+
+'</div></div>';
+}
 
 function buildTabs(){
 const bar=document.getElementById("tabBar");
-const contents=document.getElementById("tabContents");
 bar.innerHTML=TABS.map(t=>{
-const items=DATA.filter(d=>t.groups.includes(d.grupo));
-return`<button class="tab-btn${activeTab===t.key?' active':''}" onclick="switchTab('${t.key}')">${t.label}<span class="tab-count">${items.length}</span></button>`;
+const cnt=getFiltered(t.k).length;
+return '<button class="tab-btn'+(aTab===t.k?' active':'')+'" onclick="swTab(\''+t.k+'\')">'+t.l+'<span class="tab-cnt">'+cnt+'</span></button>';
 }).join("");
-contents.innerHTML=TABS.map(t=>{
-const isOpProc=t.key==="op_proc";
-let filtersHtml="";
-if(!isOpProc){
-const tf=tabFilters[t.key];
-filtersHtml=`<div class="tab-filters"><div class="filter-group"><label>Evolucao:</label><button class="filter-btn${tf.evolucao==='Sim'?' active':''}" onclick="setTabFilter('${t.key}','evolucao','Sim')">Sim</button><button class="filter-btn${tf.evolucao==='Nao'?' active':''}" onclick="setTabFilter('${t.key}','evolucao','Nao')">Nao</button><button class="filter-btn${tf.evolucao==='Todos'?' active':''}" onclick="setTabFilter('${t.key}','evolucao','Todos')">Todos</button></div><div class="filter-group"><label>Critico Copa:</label><button class="filter-btn${tf.critico==='Sim'?' active':''}" onclick="setTabFilter('${t.key}','critico','Sim')">Sim</button><button class="filter-btn${tf.critico==='Nao'?' active':''}" onclick="setTabFilter('${t.key}','critico','Nao')">Nao</button><button class="filter-btn${tf.critico==='Todos'?' active':''}" onclick="setTabFilter('${t.key}','critico','Todos')">Todos</button></div><button class="clear-btn" onclick="clearTabFilter('${t.key}')">Limpar Filtros</button></div>`;
-}else{
-filtersHtml=`<div class="tab-filters"><button class="clear-btn" onclick="clearAllFilters()">Limpar Filtros Globais</button></div>`;
-}
-return`<div class="tab-content${activeTab===t.key?' active':''}" id="tab_${t.key}">${filtersHtml}<div class="items-list" id="list_${t.key}"></div>${isOpProc?'<div class="tab-summary" id="opProcSummary"></div>':''}</div>`;
+const c=document.getElementById("tabsC");
+c.innerHTML=TABS.map(t=>{
+const f=tF[t.k];
+return '<div class="tab-content'+(aTab===t.k?' active':'')+'" id="tc_'+t.k+'">'+
+'<div class="tf">'+
+'<div class="fg"><label>Critico Copa:</label>'+
+['Sim','Nao','Todos'].map(v=>'<button class="fb'+(f.cr===v?' active':'')+'" onclick="setF(\''+t.k+'\',\'cr\',\''+v+'\')">'+v+'</button>').join("")+'</div>'+
+'<div class="fg"><label>Evolucao:</label>'+
+['Sim','Nao','Todos'].map(v=>'<button class="fb'+(f.ev===v?' active':'')+'" onclick="setF(\''+t.k+'\',\'ev\',\''+v+'\')">'+v+'</button>').join("")+'</div>'+
+'<div class="fg"><label>Concluido:</label>'+
+['Sim','Nao','Todos'].map(v=>'<button class="fb'+(f.done===v?' active':'')+'" onclick="setF(\''+t.k+'\',\'done\',\''+v+'\')">'+v+'</button>').join("")+'</div>'+
+'<button class="cb" onclick="clrF(\''+t.k+'\')">Limpar Filtros</button>'+
+'</div><div class="ilist" id="il_'+t.k+'"></div></div>';
 }).join("");
 }
 
-function switchTab(k){activeTab=k;buildTabs();renderAllLists()}
-function setTabFilter(tab,field,val){tabFilters[tab][field]=val;buildTabs();renderAllLists()}
-function clearTabFilter(tab){tabFilters[tab]={evolucao:"Todos",critico:"Todos"};buildTabs();renderAllLists()}
-function clearAllFilters(){activeGroupFilter=null;activeStatusFilter=null;document.getElementById("globalSearch").value="";Object.keys(tabFilters).forEach(k=>tabFilters[k]={evolucao:"Sim",critico:"Todos"});applyAllFilters()}
+function swTab(k){aTab=k;buildTabs();renderLists()}
+function setF(tab,f,v){tF[tab][f]=v;buildTabs();renderLists()}
+function clrF(tab){tF[tab]={cr:"Todos",ev:"Todos",done:"Todos"};buildTabs();renderLists()}
 
-function getFilteredItems(tabKey){
-const tab=TABS.find(t=>t.key===tabKey);
-let items=DATA.filter(d=>tab.groups.includes(d.grupo));
-const search=document.getElementById("globalSearch").value.toLowerCase();
-if(search){items=items.filter(d=>JSON.stringify(d).toLowerCase().includes(search))}
-if(activeGroupFilter){items=items.filter(d=>d.grupo===activeGroupFilter)}
-if(activeStatusFilter){items=items.filter(d=>d.status===activeStatusFilter)}
-if(!tab.showAll){
-const tf=tabFilters[tabKey];
-if(tf.evolucao!=="Todos")items=items.filter(d=>d.evolucao===tf.evolucao);
-if(tf.critico!=="Todos")items=items.filter(d=>d.critico===tf.critico);
-}
+function getFiltered(gk){
+let items=D.filter(d=>d.g===gk);
+const s=document.getElementById("gs").value.toLowerCase();
+if(s)items=items.filter(d=>(d.t+d.ep+d.ow+d.ob+d.st).toLowerCase().includes(s));
+if(fGrp&&fGrp!==gk)return [];
+if(fSt)items=items.filter(d=>d.st===fSt);
+const f=tF[gk];
+if(f.cr!=="Todos")items=items.filter(d=>d.cr===f.cr);
+if(f.ev!=="Todos")items=items.filter(d=>d.ev===f.ev);
+if(f.done==="Sim")items=items.filter(d=>d.c===100);
+if(f.done==="Nao")items=items.filter(d=>d.c<100);
 return items;
 }
 
-function renderCard(d,i){
-const pc=progColor(d.conclusao);
-const stCls=stClass(d.statusDE);
-return`<div class="item-card" style="border-left:4px solid ${gc(d.grupo)}">
-<div class="item-header" onclick="toggleDetail(${i})">
-<div><div class="item-epico">${d.epico}</div></div>
-<div><div class="item-tema">${d.tema}</div><div class="item-badges">${d.critico==="Sim"?'<span class="badge badge-crit">CRITICO</span>':''}${d.evolucao==="Sim"?'<span class="badge badge-evol">EVOLUCAO</span>':''}<span class="badge badge-status">${d.status}</span></div></div>
-<div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:${d.conclusao}%;background:${pc}"></div></div><span class="progress-pct" style="color:${pc}">${d.conclusao}%</span></div>
-<div class="item-status-de ${stCls}">${d.statusDE}</div>
-<div class="item-owner">${d.owner}</div>
-</div>
-<div class="item-detail" id="detail_${i}"><div class="detail-grid"><div class="detail-block"><h4>Observacao Geral</h4><p>${d.obs||"-"}</p></div><div class="detail-block"><h4>Observacao Dist & Exib (Nosso Status)</h4><p>${d.obsDE||"-"}</p></div></div></div>
-</div>`;
+function card(d,idx){
+const col=gc(d.g),p=pc(d.c),scl=sc(d.st);
+return '<div class="ic"><div class="gl-bar" style="background:'+col+'"></div>'+
+'<div class="ih" onclick="tog('+idx+')">'+
+'<div><div class="ie">'+d.ep+'</div></div>'+
+'<div><div class="it">'+d.t+'</div><div class="ib">'+
+(d.cr==="Sim"?'<span class="bg bg-c">CRITICO</span>':'')+
+(d.ev==="Sim"?'<span class="bg bg-e">EVOLUCAO</span>':'')+
+'<span class="bg bg-s">'+d.st+'</span></div></div>'+
+'<div class="pw"><div class="pt"><div class="pf" style="width:'+d.c+'%;background:'+p+'"></div></div><span class="pp" style="color:'+p+'">'+d.c+'%</span></div>'+
+'<div class="ow">'+d.ow+'</div>'+
+'</div>'+
+'<div class="id" id="dt_'+idx+'"><b>Observacao:</b> '+d.ob+'</div></div>';
 }
 
-function toggleDetail(i){const el=document.getElementById("detail_"+i);el.classList.toggle("open")}
+function tog(i){document.getElementById("dt_"+i).classList.toggle("open")}
 
-function renderAllLists(){
+function renderLists(){
 TABS.forEach(t=>{
-const items=getFilteredItems(t.key);
-const el=document.getElementById("list_"+t.key);
+const items=getFiltered(t.k);
+const el=document.getElementById("il_"+t.k);
 if(!el)return;
-if(items.length===0){el.innerHTML='<div class="no-results">Nenhum item encontrado com os filtros atuais.</div>';return}
-el.innerHTML=items.map((d,i)=>renderCard(d,DATA.indexOf(d))).join("");
+el.innerHTML=items.length?items.map(d=>card(d,D.indexOf(d))).join(""):'<div class="nr">Nenhum item encontrado com os filtros atuais.</div>';
 });
-const sumEl=document.getElementById("opProcSummary");
-if(sumEl){
-const opItems=getFilteredItems("op_proc");
-const res=opItems.filter(d=>["Resolvido","Contornado"].includes(d.status)).length;
-const and=opItems.filter(d=>["Em andamento","Em validacao","Em solucao"].includes(d.status)).length;
-const pend=opItems.filter(d=>d.status==="Pendente").length;
-sumEl.innerHTML=`<div class="ts-item"><span class="ts-dot" style="background:#27ae60"></span>Resolvido/Contornado: ${res}</div><div class="ts-item"><span class="ts-dot" style="background:#f39c12"></span>Em andamento/validacao/solucao: ${and}</div><div class="ts-item"><span class="ts-dot" style="background:#e74c3c"></span>Pendente: ${pend}</div><div class="ts-item" style="margin-left:auto;font-weight:600">Total exibido: ${opItems.length}</div>`;
-}
-updateTabCounts();
-}
-
-function updateTabCounts(){
+// update counts
+document.querySelectorAll(".tab-btn").forEach(b=>{
 TABS.forEach(t=>{
-const items=getFilteredItems(t.key);
-const btns=document.querySelectorAll(".tab-btn");
-btns.forEach(b=>{if(b.textContent.includes(t.label)){
-const span=b.querySelector(".tab-count");
-if(span)span.textContent=items.length;
-}});
+if(b.textContent.includes(t.l)){
+const sp=b.querySelector(".tab-cnt");
+if(sp)sp.textContent=getFiltered(t.k).length;
+}
+});
 });
 }
 
-function applyAllFilters(){buildDonut();buildStatusBars();buildTabs();renderAllLists()}
+function render(){buildGrpBars();buildStBars();buildGauge();buildTabs();renderLists()}
 
-buildSummary();buildDonut();buildStatusBars();buildTabs();renderAllLists();
+buildVG();render();
 </script>
 </body>
 </html>
