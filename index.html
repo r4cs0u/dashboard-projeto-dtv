@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Estrategico de Ocorrencias</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1419;color:#e8eaed;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;padding:20px}
+.header{text-align:center;padding:30px 20px;background:linear-gradient(135deg,#1a2332 0%,#2d3748 100%);border-radius:16px;margin-bottom:24px;border:1px solid #2d3748}
+.header h1{font-size:28px;font-weight:700;background:linear-gradient(90deg,#00d4aa,#4ecdc4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+.header p{color:#a0aec0;font-size:14px}
+.header .period{color:#ffd93d;font-weight:600;font-size:15px;margin-top:4px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:14px;margin-bottom:24px}
+.kpi-card{background:#1a2332;border-radius:12px;padding:18px 12px;text-align:center;border:1px solid #2d3748;transition:transform 0.2s}
+.kpi-card:hover{transform:translateY(-2px)}
+.kpi-card .value{font-size:28px;font-weight:800;margin:6px 0}
+.kpi-card .label{font-size:10px;color:#a0aec0;text-transform:uppercase;letter-spacing:1px}
+.kpi-card .sub{font-size:10px;color:#718096;margin-top:4px}
+.v1 .value{color:#00d4aa}.v2 .value{color:#ff6b6b}.v3 .value{color:#4ecdc4}
+.v4 .value{color:#ffd93d}.v5 .value{color:#a29bfe}.v6 .value{color:#ff4757}
+.v7 .value{color:#ffa502}.v8 .value{color:#2ed573}.v9 .value{color:#fd79a8}
+.v10 .value{color:#74b9ff}.v11 .value{color:#55efc4}
+.chart-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:24px}
+.chart-card{background:#1a2332;border-radius:12px;padding:12px;border:1px solid #2d3748;overflow:hidden}
+.chart-card.full{grid-column:1/-1}
+.section-title{font-size:20px;font-weight:700;color:#00d4aa;margin:30px 0 16px 0;padding-bottom:8px;border-bottom:2px solid #2d3748}
+.note{background:#1e293b;border-left:4px solid #ffd93d;padding:12px 16px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:13px;color:#a0aec0}
+.note-reliability{background:#1e293b;border-left:4px solid #6c5ce7;padding:14px 18px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:12.5px;color:#a0aec0;line-height:1.7}
+.note-reliability strong{color:#e8eaed}
+@media(max-width:900px){.chart-grid{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<p style="text-align:center;padding:40px;color:#a0aec0;font-size:16px;">
+  ⚠️ Este arquivo é um placeholder. O dashboard completo será publicado em breve.<br><br>
+  Repositório: <a href="https://github.com/r4cs0u/dashboard-projeto-dtv-" style="color:#00d4aa;">dashboard-projeto-dtv-</a>
+</p>
+</body>
+</html>
